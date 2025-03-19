@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-youtube-black text-youtube-white;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-youtube-black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-youtube-border rounded-full hover:bg-youtube-gray transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-youtube-blue/30 text-youtube-white;
+  }
+}
+
+@layer components {
+  .youtube-btn {
+    @apply bg-youtube-blue text-youtube-white font-medium py-2 px-4 rounded-sm hover:bg-opacity-90 transition-all duration-300;
+  }
+
+  .youtube-card {
+    @apply bg-youtube-dark rounded-lg overflow-hidden transition-all duration-300;
+  }
+
+  .youtube-title {
+    @apply text-lg font-bold truncate;
+  }
+
+  .youtube-input {
+    @apply bg-youtube-dark border border-youtube-border rounded-full px-4 py-2 text-youtube-white focus:outline-none focus:border-youtube-blue transition-colors duration-300;
+  }
+
+  .youtube-tag {
+    @apply bg-youtube-hover text-youtube-lightGray px-2 py-1 rounded-full text-xs;
+  }
+
+  .youtube-container {
+    @apply container mx-auto px-4 md:px-6;
+  }
+
+  .youtube-sidebar-item {
+    @apply flex items-center py-2 px-3 rounded-lg hover:bg-youtube-hover transition-colors duration-200 cursor-pointer;
+  }
+
+  .youtube-sidebar-item-active {
+    @apply bg-youtube-hover;
+  }
+
+  .youtube-chip {
+    @apply bg-youtube-hover text-youtube-white px-3 py-1.5 rounded-full text-sm font-medium hover:bg-youtube-gray/30 transition-colors duration-200 cursor-pointer whitespace-nowrap;
+  }
+
+  .youtube-chip-active {
+    @apply bg-youtube-white text-youtube-black hover:bg-youtube-white/90;
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 3s infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseSlow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+}
