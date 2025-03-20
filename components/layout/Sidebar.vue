@@ -3,7 +3,7 @@
     class="fixed left-0 top-14 h-[calc(100vh-56px)] bg-youtube-black border-r border-youtube-border z-40 transition-all duration-300"
     :class="{ 'w-64': expanded, 'w-20': !expanded }"
   >
-    <div class="h-full overflow-y-auto overflow-x-hidden youtube-scrollbar">
+    <div class="h-full overflow-x-hidden overflow-y-auto youtube-scrollbar">
       <!-- Main Navigation -->
       <nav class="py-2">
         <!-- For expanded sidebar -->
@@ -17,7 +17,7 @@
               'bg-youtube-hover font-medium': isActiveRoute(item.path),
             }"
           >
-            <component :is="item.icon" class="h-6 w-6 mr-6" />
+            <component :is="item.icon" class="w-6 h-6 mr-6" />
             <span>{{ item.name }}</span>
           </NuxtLink>
         </div>
@@ -28,12 +28,12 @@
             v-for="item in mainNavItems"
             :key="item.path"
             :to="item.path"
-            class="flex flex-col items-center justify-center px-2 py-4 hover:bg-youtube-hover text-youtube-white text-xs"
+            class="flex flex-col items-center justify-center px-2 py-4 text-xs hover:bg-youtube-hover text-youtube-white"
             :class="{
               'bg-youtube-hover font-medium': isActiveRoute(item.path),
             }"
           >
-            <component :is="item.icon" class="h-6 w-6 mb-1" />
+            <component :is="item.icon" class="w-6 h-6 mb-1" />
             <span class="text-[10px] mt-1">{{ item.name }}</span>
           </NuxtLink>
         </div>
@@ -55,7 +55,7 @@
             class="flex items-center px-4 py-2 hover:bg-youtube-hover text-youtube-white"
           >
             <div
-              class="h-6 w-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 mr-6 flex-shrink-0 overflow-hidden"
+              class="flex-shrink-0 w-6 h-6 mr-6 overflow-hidden rounded-full bg-gradient-to-br from-purple-500 to-pink-500"
             >
               <span class="sr-only">{{ channel.name }}</span>
             </div>
@@ -64,29 +64,10 @@
         </div>
       </div>
 
-      <!-- Library section -->
-      <div v-if="expanded" class="py-2">
-        <div class="my-2 border-b border-youtube-border"></div>
-        <h3 class="px-4 py-1 text-sm font-medium uppercase text-youtube-gray">
-          Library
-        </h3>
-        <div class="mt-2 space-y-1">
-          <NuxtLink
-            v-for="item in libraryItems"
-            :key="item.path"
-            :to="item.path"
-            class="flex items-center px-4 py-2 hover:bg-youtube-hover text-youtube-white"
-          >
-            <component :is="item.icon" class="h-6 w-6 mr-6" />
-            <span>{{ item.name }}</span>
-          </NuxtLink>
-        </div>
-      </div>
-
       <!-- Footer -->
       <div
         v-if="expanded"
-        class="px-4 py-4 text-youtube-gray text-xs space-y-4"
+        class="px-4 py-4 space-y-4 text-xs text-youtube-gray"
       >
         <div class="space-x-2">
           <a href="#" class="hover:text-youtube-white">About</a>
@@ -133,10 +114,6 @@ const SubscriptionsIcon = defineComponent({
   template: `<svg xmlns="http://www.w3.org/2000/svg" class="fill-current" viewBox="0 0 24 24"><path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z"/></svg>`,
 });
 
-const LibraryIcon = defineComponent({
-  template: `<svg xmlns="http://www.w3.org/2000/svg" class="fill-current" viewBox="0 0 24 24"><path d="M11 7l6 3.5-6 3.5V7zm7 13H4V6H3v15h15v-1zm3-2H6V3h15v15zM7 17h13V4H7v13z"/></svg>`,
-});
-
 const HistoryIcon = defineComponent({
   template: `<svg xmlns="http://www.w3.org/2000/svg" class="fill-current" viewBox="0 0 24 24"><path d="M14.97 16.95 10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM22 12c0 5.51-4.49 10-10 10S2 17.51 2 12h1c0 4.96 4.04 9 9 9s9-4.04 9-9-4.04-9-9-9C8.81 3 5.92 4.64 4.28 7.38c-.11.18-.22.37-.31.56L3.94 8H8v1H1.96V3h1v4.74c.04-.09.07-.17.11-.25.11-.22.23-.42.35-.63C5.22 3.86 8.51 2 12 2c5.51 0 10 4.49 10 10z"/></svg>`,
 });
@@ -164,20 +141,6 @@ const mainNavItems = [
   { name: "Movies", path: "/explore?category=movies", icon: MoviesIcon },
   { name: "TV Shows", path: "/explore?category=tv", icon: SubscriptionsIcon },
   { name: "Trending", path: "/explore?category=trending", icon: ShortsIcon },
-  { name: "Library", path: "/library", icon: LibraryIcon },
-];
-
-const libraryItems = [
-  { name: "History", path: "/history", icon: HistoryIcon },
-  { name: "Watch Later", path: "/playlist?list=WL", icon: WatchLaterIcon },
-  { name: "Liked Movies", path: "/playlist?list=LL", icon: LikedVideosIcon },
-  {
-    name: "Action & Adventure",
-    path: "/explore?category=action",
-    icon: YourVideosIcon,
-  },
-  { name: "Comedy", path: "/explore?category=comedy", icon: YourVideosIcon },
-  { name: "Drama", path: "/explore?category=drama", icon: YourVideosIcon },
 ];
 
 // Sample subscriptions data - replaced with genre channels
